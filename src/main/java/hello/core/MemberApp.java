@@ -8,7 +8,10 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+//        MemberService memberService = new MemberServiceImpl(); //AppConfig의 등장으로 더이상 직접 생성하여 DIP위반을 안해도된다.
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
         Member findMember = memberService.findMember(1L);
